@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/Style_Cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="Conteudo/SimboloKame.png" type="image/x-icon">
+    <script src="./js/funcoes.js"></script>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            
+        </ul>
+    </nav>
+
+    <main>
+        <h3>CADASTRE-SE</h3> 
+        <div class="social-media">
+                <img src="Conteudo/Kami.png">
+                <img src="Conteudo/Kuririn.png">
+        </div>
+
+        <form action="">
+            <label for="nome">
+                <span>Nome:</span>
+                <input type="text" name="nome" id="ipt_nome">
+            </label>
+
+            <label for="email">
+                <span>E-mail:</span>
+                <input type="email" name="email" id="ipt_email">
+            </label>
+
+            <!-- <label for="telefone">
+                <span>Telefone:</span>
+                <input type="text" name="numero" id="ipt_telefone">
+            </label> -->
+
+            <label for="senha">
+                <span>Senha:</span>
+                <input type="password" name="senha" id="ipt_senha">
+            </label>
+
+            <label for="repetirSenha">
+                <span>Confirme a Senha:</span>
+                <input type="password" name="senhacheck" id="ipt_check">
+            </label>
+
+            <input type="button" name="cadastro" value="Cadastrar" onclick="Cadastrar()">
+        </form>
+    </main>
+    <section class="images">
+        <img src="Conteudo/Vegeta.png">
+        <div class="circle"></div>
+    </section>
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</html>
+
+<script>
+    function Cadastrar() {
+        aguardar();
+        // var Tel = Number(ipt_telefone.value)
+
+if (ipt_nome.value.length == '') {
+    swal({
+    title: "Ops...",
+    text: "CAMPO NOME EM BRANCO, DIGITE SEU NOME!",
+    icon: "error",
+    });
+
+} else if (ipt_email.value.length == '') {
+    swal({
+    title: "Ops...",
+    text: "CAMPO E-MAIL EM BRANCO, DIGITE ALGO!",
+    icon: "error",
+    });
+
+} else if (ipt_email.value.length < 7) {
+    swal({
+    title: "Ops...",
+    text: "PREENCHA O CAMPO DE E-MAIL COM MAIS DE 7 CARACTERES!",
+    icon: "error",
+    });
+
+} else if (ipt_email.value.indexOf('.') == -1) {
+    swal({
+    title: "Ops...",
+    text: "INSIRA . NO EMAIL!",
+    icon: "error",
+    });
+
+} else if (ipt_email.value.indexOf('@') == -1) {
+    swal({
+    title: "Ops...",
+    text: "INSIRA @ NO EMAIL!",
+    icon: "error",
+    });
+
+} else if (ipt_senha.value.length == '') {
+    swal({
+    title: "Ops...",
+    text: "CAMPO DE SENHA EM BRANCO!",
+    icon: "error",
+    });
+
+} else if (ipt_check.value.length == '') {
+    swal({
+    title: "Ops...",
+    text: "CAMPO DE CONFIRME SENHA EM BRANCO!",
+    icon: "error",
+    });
+
+}else if (ipt_check.value != ipt_senha.value  ) {
+    swal({
+    title: "Ops...",
+    text: "AS SENHAS NÃO CORRESPONDEM",
+    icon: "error",
+    });
+} 
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_nome.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_check.value;
+        
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || ipt_check.value != ipt_senha.value) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+
+            finalizarAguardar();
+            return false;
+        }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                
+            })
+        }).then(function (resposta) {
+
+
+            if (resposta.ok) {
+                // swal({
+                // title: "",
+                // text: "CADASTRO REALIZADO COM SUCESSO!",
+                // icon: "success",
+                // });
+                 alert('Cadastrado Realizado com sucesso, Redirecionando para tela de login')
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "1000")
+                
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            // console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
+
+</script>

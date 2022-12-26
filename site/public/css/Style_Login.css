@@ -1,0 +1,149 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+body {
+    background: #2284f3;
+    color: white;
+    display: flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100%;
+    position: fixed;
+    
+}
+
+nav{
+    width: 100%;
+    position: fixed;
+    text-align: right;
+    z-index: 1;
+    
+}
+
+nav ul li{
+    display: inline-block;
+
+}
+
+nav ul li a{
+    text-decoration: none;
+    padding: 5px 0;
+    display: inline-block;
+    margin: 15px 10px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s ease-in-out;
+}
+
+nav ul li a:hover{
+    border-bottom: 3px solid #2284f3;
+} 
+
+main {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+main h3 {
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    
+
+}
+
+main.social-media {
+    display: flex;
+    align-content: center;
+}
+
+
+main .social-media img {
+    width: 150px;
+    margin-left: 40px;
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main label {
+    display: flex;
+    flex-direction: column;
+}
+
+main label span {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+main input {
+    background: white;
+    width: 300px;
+    height: 50px;
+    margin-top: 8px;
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    border: 1px solid #2284f3;
+    border-radius: 8px;
+}
+
+main input[type="submit"] {
+    cursor: pointer;
+    width: 50%;
+    margin-top: 30px;
+    border: none;
+    border-radius: 32px;
+    background: orangered;
+    color: white;
+    font-size: 1.1rem;
+    transition: all .3s ease-in-out;
+}
+
+main input[type="submit"]:hover {
+    background: rgb(216, 200, 194)
+}
+
+section.images {
+    width: 50vw;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 50px;
+    margin-left: 160px;
+    margin-bottom: 100px; 
+}
+
+section.images img {
+    width: 100%;    
+}
+
+section.images .circle {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, rgb(216, 200, 194), orangered);
+    clip-path: circle(80% at right 80%);
+    z-index: -1;
+}
+
+#boo{
+    width: 190px;
+}

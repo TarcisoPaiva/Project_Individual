@@ -1,0 +1,174 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Kanit', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+}
+
+nav{
+    width: 100%;
+    position: fixed;
+    
+    text-align: right;
+    z-index: 1;
+    
+}
+
+nav ul li{
+    display: inline-block;
+
+}
+
+nav ul li a{
+    text-decoration: none;
+    padding: 5px 0;
+    display: inline-block;
+    margin: 15px 10px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s ease-in-out;
+}
+
+nav ul li a:hover{
+    border-bottom: 3px solid rgb(255, 3, 3);
+} 
+
+section{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+section div.backgroundSection{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+section div.backgroundSection video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    
+}
+
+
+section div.box{
+    width: 55%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+section div.box div.conteudo{
+    width: 0px;
+    margin-left: 420px;
+}
+
+section div.box img{
+    width: 250px;
+    margin-bottom: 510px;  
+    
+}
+
+section div.box1{
+    width: 100vh;
+    height: 100px;
+    margin-right: 850px;
+    margin-bottom: 150px;
+}
+
+
+section div.box1 h1{
+    color: white;
+    font-size: 50px;
+    display: flex;
+   
+}
+
+section div.box1 h2{
+    color: white;
+    font-size: 17px;
+    display: flex;
+    align-items: left;
+    
+}
+
+
+   
+/* Segunda Sessão
+
+section .sobre{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+section div.backgroundVegeta{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+section div.backgroundVegeta video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    
+}
+
+.card {
+    background-color: rgba(98, 19, 109, 0.67);
+    width: 450px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px 40px 40px 40px;
+    transition: 2s all ease-in-out;
+    text-align: center;
+    box-shadow: 3px 3px 3px rgba(27, 26, 27, 0.852);
+    color: rgb(255, 255, 255);
+    font-variant: small-caps;
+    
+}
+
+.box .card img{
+    margin-bottom: 35px;
+    width: 275px;
+}
+
+.box .card h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+    
+}
+
+.box .card p{
+    font-size: 25px;
+   
+} */
+
+
+
+

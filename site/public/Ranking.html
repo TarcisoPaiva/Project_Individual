@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+    <link rel="stylesheet" href="css/Style_Ranking.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="Conteudo/SimboloKame.png" type="image/x-icon">
+</head>
+
+<body onload="ranking()">
+
+    <nav>
+        <ul>
+            
+            <li><a href="quiz.html">Voltar</a></li>
+            
+        </ul>
+    </nav>
+    
+    <div id="container">
+
+        <div id="box" class="Head">
+
+                <span>POSIÇÃO</span>
+            
+                <span>NOME</span>
+            
+                <span>PONTUAÇÃO</span>
+                
+                <span>QTD ACERTOS</span>
+
+                <span>COMENTÁRIOS</span>
+
+            </div>
+
+        </div>
+
+    </div>
+    <section class="images">
+        <img src="Conteudo/Dragon1.png">
+        <div class="circle"></div>
+    </section>
+</body>
+</html>
+<script>
+    function ranking(){
+
+        fetch("/usuarios/ranking").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                   
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                     var feed = document.getElementById("container");
+                    // feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        
+                           var Resposta = resposta[i];
+                           var box = document.createElement("div");
+                           var Posicao = document.createElement('span');
+                           var Nome = document.createElement('span');
+                           var Pontuacao = document.createElement('span');
+                           var Acertos = document.createElement('span')
+                           var Comentarios = document.createElement('span');
+
+                           Posicao.innerHTML = `${i+1}°-`
+                           Nome.innerHTML = Resposta.Nome
+                           Pontuacao.innerHTML = Resposta.Pontos
+                           Acertos.innerHTML = `${Resposta.QtdAcertos} De 10`
+                           Comentarios.innerHTML = Resposta.Comentario
+                    //     // criando e manipulando elementos do HTML via JavaScript
+                    //     var divPublicacao = document.createElement("div");
+                    //     var spanID = document.createElement("span");
+                    //     var spanTitulo = document.createElement("span");
+                    //     var spanNome = document.createElement("span");
+                    //     var divDescricao = document.createElement("div");
+                    //     var divButtons = document.createElement("div");
+                    //     var btnEditar = document.createElement("button");
+                    //     var btnDeletar = document.createElement("button");
+
+                           box.className = "Conteudo";
+                           box.appendChild(Posicao)
+                           box.appendChild(Nome)
+                           box.appendChild(Pontuacao)
+                           box.appendChild(Acertos)
+                           box.appendChild(Comentarios)
+
+                           feed.appendChild(box)
+                    //     spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                    //     spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                    //     spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                    //     divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                    //     btnEditar.innerHTML = "Editar";
+                    //     btnDeletar.innerHTML = "Deletar";
+
+                        
+                    //     divPublicacao.className = "publicacao";
+                    //     spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                    //     spanNome.className = "publicacao-nome";
+                    //     spanTitulo.className = "publicacao-titulo";
+                    //     divDescricao.className = "publicacao-descricao";
+
+                    //     divButtons.className = "div-buttons"
+
+                    //     btnEditar.className = "publicacao-btn-editar"
+                    //     btnEditar.id = "btnEditar" + publicacao.idAviso;
+                    //     btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                    //     btnDeletar.className = "publicacao-btn-editar"
+                    //     btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                    //     btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                    //     divPublicacao.appendChild(spanID);
+                    //     divPublicacao.appendChild(spanNome);
+                    //     divPublicacao.appendChild(spanTitulo);
+                    //     divPublicacao.appendChild(divDescricao);
+                    //     divPublicacao.appendChild(divButtons);
+                    //     divButtons.appendChild(btnEditar);
+                    //     divButtons.appendChild(btnDeletar);
+                    //     feed.appendChild(divPublicacao);
+                    }
+
+                   
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            
+        });
+    
+    }
+</script>
